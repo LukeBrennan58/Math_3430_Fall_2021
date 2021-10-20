@@ -1,5 +1,5 @@
 
-#Problem 00
+#HW02 problem 00
 def Vadd(v1:list,v2:list):
     '''Adds two vectors together
     
@@ -23,9 +23,8 @@ def Vadd(v1:list,v2:list):
       
     return result
 
-#Problem 01
+#HW02 problem 01
 def SxV(S:float, V:list):
-    
     '''Multiplies a Scalar to a vector.
     
     Create an empty list called result
@@ -44,7 +43,6 @@ def SxV(S:float, V:list):
     
     #first we check if the types are correct
     
-    
     result:list = [] #establishes an empty list to fill later
     
     for i in V:                 #iterates through and appends the new value to the blank list
@@ -52,9 +50,8 @@ def SxV(S:float, V:list):
         
     return result
 
-#Problem 02
+#HW02 problem 02
 def SxM(S:float, M:list):
-    
     '''Multiplies a Scalar to a matrix.
     
     Create an empty list called result
@@ -73,8 +70,6 @@ def SxM(S:float, M:list):
 
     '''
     
-    
-    
     result:list = [] #establishes an empty list to fill later
     
     for i in M:
@@ -82,7 +77,7 @@ def SxM(S:float, M:list):
 
     return result
 
-#Problem 03
+#HW02 problem 03
 def Madd(m1:list, m2:list):
     '''Performs matrix addition between two input matrices
     
@@ -108,9 +103,9 @@ def Madd(m1:list, m2:list):
         
     return(result)
 
-#Problem 04
+#HW02 problem 04
 def MxV(M:list, V:list):
-    '''Computes the Matrix dot product of the input vector and matrix
+    '''Computes the Matrix multiplication of the input vector and matrix
     
     Create an empty list called result
     fill the result with 0s equal to the length of the input vector
@@ -139,10 +134,9 @@ def MxV(M:list, V:list):
             
     return result
 
-#Problem 05
+#HW02 problem 05
 def MxM(m1:list, m2:list):
-    
-    '''Computes the Matrix dot product of the two input matrices
+    '''Computes the Matrix multiplication of the two input matrices
     
     Create an empty list called result
     iterate through the second input matrix and use VxM to multiply the corresponding column to the first input matrix 
@@ -165,4 +159,139 @@ def MxM(m1:list, m2:list):
         result.append(MxV(m1, i))
         
     return result
+
+#HW04 problem 01
+def AbV(s:complex):
     
+    '''Computes the absolute value of the input scalar
+    
+    Create a variable result
+    Square the real and imaginary part of s and then take the square root
+    *this will give you the distance from 0
+    
+    Parameters
+    ----------
+    s : A scalar represented as a float that may be real or imaginary
+
+    Returns
+    -------
+    A positive float that represents the absolute value of the input scalar
+
+    '''
+            
+    return((s.real**2 + s.imag**2)**0.5)
+
+#HW04 problem 02
+def Pnorm(v:list, p:int=2):
+    '''Computes the P-norm of the input vector
+    
+    Create a variable result
+    Iterate through v raise each term to the power of p and add them all to result
+    take the p root of the result
+    
+    Parameters
+    ----------
+    v : A vector list of scalars that may contain real or imaginary numbers
+    p : A scalar represented as a float set default to 2
+
+    Returns
+    -------
+    result : A positive float that represents the computed P-norm of the vector
+
+    '''
+    result = 0
+    
+    for i in v:
+        result += AbV(i)**p
+        
+    return result**(1/p)
+
+#HW04 problem 03
+def Inorm(v:list):
+    
+    '''Computes the Infinity norm of the input vector
+    
+    Create a variable result
+    Iterate through the vector v and set the absolute value of the first term equal to the result
+    Then check every subsequent term to see if the absolute value of the term is greater than the previously established result
+    If a term is greater than set result equal to that term
+    
+    
+    Parameters
+    ----------
+    v : A vector list of scalars that may contain real or imaginary numbers
+
+
+    Returns
+    -------
+    result : A positive float that represents the computed Infinity norm of the vector
+
+    '''
+    
+    result = 0
+    term = 0
+    
+    for i in v:
+        term = AbV(i)
+        if term > result:
+            result = term
+        
+    return result
+
+#HW04 problem 04
+def PorI(v:list, p:int=2, c:bool=False):
+    
+    '''Computes either the P-norm or the Infinity norm of a vector based on what the user inputs as the third argument
+    
+    If c is True then call Inorm() to compute the infinity norm of the vector and return it
+    Otherwise call Pnorm() to compute the P-norm of the vector and return that
+    
+    
+    Parameters
+    ----------
+    v : A vector list of scalars that may contain real or imaginary numbers
+    p : A scalar represented as a float set default to 2
+    c : A boolean value set default to False
+
+    Returns
+    -------
+    A positive float that either represents the computed Infinity norm or the P-norm of the input vector
+
+    '''
+    
+    if c:
+        return Inorm(v)
+    else:
+        return Pnorm(v, p)
+    
+#HW04 problem 05
+def Dot(v1:list, v2:list):
+    
+    '''Computes the inner product or dot product of two vectors
+    
+    Create an float result equal to 0
+    iterate through a vector and if the current index of the first vector is a comlex number take the conjugate
+    add the two corresponding indexes of the vectors to the result but use the conjugate if you took it in the last step
+    
+    
+    Parameters
+    ----------
+    v1 : A vector list of scalars that may contain real or imaginary numbers
+    v2 : A second vector list of scalars that may contain real or imaginary numbers
+
+    Returns
+    -------
+    result : A float that represents the dot product of two vectors that may be imaginary or real
+
+    '''
+    
+    result:float = 0
+    
+    for i in range(len(v1)):
+        if type(v1[i]) == complex:
+            result += v1[i].conjugate() * v2[i]
+        else:
+            result += v1[i] * v2[i]
+    
+    return result
+
