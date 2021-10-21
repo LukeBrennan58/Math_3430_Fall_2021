@@ -1,18 +1,8 @@
 import pytest
 import LA
 
-global m1
-global m2
-global m3
-global s1
-global s2
-global s3
-global s4
-global v1
-global v2
-global v3
-global v4
-global v5
+global m1, m2, m3, s1, s2, s3, s4, v1, v2, v3, v4, v5
+
 m1 = [[12,7,3],[4,5,6],[7,8,9]]
 m2 = [[5,8,1],[6,7,3],[4,5,9]]
 m3 = [[8,6,7],[5,3,0],[9,9,9]]
