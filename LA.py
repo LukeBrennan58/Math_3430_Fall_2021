@@ -1,3 +1,6 @@
+'''
+Luke Brennan
+'''
 
 #HW02 problem 00
 def Vadd(v1:list,v2:list):
@@ -199,7 +202,7 @@ def Pnorm(v:list, p:int=2):
     result : A positive float that represents the computed P-norm of the vector
 
     '''
-    result = 0
+    result:float = 0
     
     for i in v:
         result += AbV(i)**p
@@ -266,6 +269,7 @@ def PorI(v:list, p:int=2, c:bool=False):
     
 #HW04 problem 05
 def Dot(v1:list, v2:list):
+
     
     '''Computes the inner product or dot product of two vectors
     
@@ -295,3 +299,36 @@ def Dot(v1:list, v2:list):
     
     return result
 
+#HW05 extra functions
+def proj(u:list, v:list):
+    return SxV(Dot(v,u)/(Pnorm(u)**2),u)
+
+def Vsub(v1:list,v2:list):
+    v2 = SxV(-1,v2)
+    return Vadd(v1,v2)
+
+def e(u:list):
+    return SxV(1/(Pnorm(u)),u)
+
+#HW05 problem 01
+def GS(v:list):
+    
+    u:list = []
+    for k in range(len(v)):
+        u.append(0)
+    
+    for i in range(len(v)):
+        
+        c:int = int(i)
+        u[i] = v[i]
+
+        uc = 0
+        while c > 0:
+            u[i] = Vsub(u[i],proj(u[uc],v[i]))
+            c = c-1
+            uc = uc + 1
+        
+        u[i] = e(u[i])
+    return u
+
+print(GS([[1, -1, 1], [1, 0, 1], [1, 1, 2]]))
