@@ -2,7 +2,7 @@
 Luke Brennan
 '''
 
-#HW02 problem 00
+#0
 def Vadd(v1:list,v2:list):
     '''Adds two vectors together
     
@@ -26,7 +26,7 @@ def Vadd(v1:list,v2:list):
       
     return result
 
-#HW02 problem 01
+#1
 def SxV(S:float, V:list):
     '''Multiplies a Scalar to a vector.
     
@@ -53,7 +53,7 @@ def SxV(S:float, V:list):
         
     return result
 
-#HW02 problem 02
+#2
 def SxM(S:float, M:list):
     '''Multiplies a Scalar to a matrix.
     
@@ -80,7 +80,7 @@ def SxM(S:float, M:list):
 
     return result
 
-#HW02 problem 03
+#3
 def Madd(m1:list, m2:list):
     '''Performs matrix addition between two input matrices
     
@@ -106,7 +106,7 @@ def Madd(m1:list, m2:list):
         
     return(result)
 
-#HW02 problem 04
+#4
 def MxV(M:list, V:list):
     '''Computes the Matrix multiplication of the input vector and matrix
     
@@ -137,7 +137,7 @@ def MxV(M:list, V:list):
             
     return result
 
-#HW02 problem 05
+#5
 def MxM(m1:list, m2:list):
     '''Computes the Matrix multiplication of the two input matrices
     
@@ -163,7 +163,7 @@ def MxM(m1:list, m2:list):
         
     return result
 
-#HW04 problem 01
+#Absolute Value 
 def AbV(s:complex):
     
     '''Computes the absolute value of the input scalar
@@ -184,7 +184,7 @@ def AbV(s:complex):
             
     return((s.real**2 + s.imag**2)**0.5)
 
-#HW04 problem 02
+#6
 def Pnorm(v:list, p:int=2):
     '''Computes the P-norm of the input vector
     
@@ -209,7 +209,7 @@ def Pnorm(v:list, p:int=2):
         
     return result**(1/p)
 
-#HW04 problem 03
+#7
 def Inorm(v:list):
     
     '''Computes the Infinity norm of the input vector
@@ -241,7 +241,7 @@ def Inorm(v:list):
         
     return result
 
-#HW04 problem 04
+#8
 def PorI(v:list, p:int=2, c:bool=False):
     
     '''Computes either the P-norm or the Infinity norm of a vector based on what the user inputs as the third argument
@@ -267,7 +267,7 @@ def PorI(v:list, p:int=2, c:bool=False):
     else:
         return Pnorm(v, p)
     
-#HW04 problem 05
+#9
 def Dot(v1:list, v2:list):
 
     
@@ -299,36 +299,4 @@ def Dot(v1:list, v2:list):
     
     return result
 
-#HW05 extra functions
-def proj(u:list, v:list):
-    return SxV(Dot(v,u)/(Pnorm(u)**2),u)
 
-def Vsub(v1:list,v2:list):
-    v2 = SxV(-1,v2)
-    return Vadd(v1,v2)
-
-def e(u:list):
-    return SxV(1/(Pnorm(u)),u)
-
-#HW05 problem 01
-def GS(v:list):
-    
-    u:list = []
-    for k in range(len(v)):
-        u.append(0)
-    
-    for i in range(len(v)):
-        
-        c:int = int(i)
-        u[i] = v[i]
-
-        uc = 0
-        while c > 0:
-            u[i] = Vsub(u[i],proj(u[uc],v[i]))
-            c = c-1
-            uc = uc + 1
-        
-        u[i] = e(u[i])
-    return u
-
-print(GS([[1, -1, 1], [1, 0, 1], [1, 1, 2]]))
