@@ -1,0 +1,3 @@
+1)
+	The disadvantage of using floating point numbers is that normally they use more memory than fixed point numbers. They also take longer to have arthmetic preformed where as fixed point numbers can have arithmetic performed on them as if they were integers.
+	The advantage of using floating point numbers is the fact that you can store any size of a decimal number up to 32 significant figures. Also in writing a program if you have no idea how many decimal places a number will be you can use a floating point variable to store the value no matter the size.
